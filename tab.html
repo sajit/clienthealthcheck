@@ -1,0 +1,94 @@
+<!doctype html>
+<html data-ng-app="myApp" data-ng-csp="">
+<head>
+    <meta charset="UTF-8">
+    <title>Presently</title>
+    <link rel="stylesheet" href="https://code.angularjs.org/snapshot/angular-csp.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div class="container">
+    Client HealthCheck chrome App
+    <div ng-controller="MainCtrl">
+
+        <h3>Upload client health check config file</h3>
+        <input type="file" ng-file-select="onFileSelect($files)" >
+        <hr/>
+        <div ng-show="fileLoadComplete">
+        <h2>Diagnostics</h2>
+        <div  class="row-fluid">
+            <table class="table table-bordered">
+                <thead>
+                <tr><td><h4>Total URLs</h4> <b>{{totalUrlsCount}}</b> </td></tr>
+                <tr>
+
+                    <td><h4>Failed URLs</h4></td>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr ng-repeat="url in failedUrls" class="danger">
+                    <td><i class="glyphicon glyphicon-remove"></i> {{url}}</td>
+
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <div class="row-fluid">
+            <table class="table table-bordered">
+
+                <tbody>
+                <tr>
+                    <td><b>OS</b></td><td><b>Supported</b></td>
+                    <td><b>Browser</b></td><td><b>Supported</b></td>
+                </tr>
+                <tr><td>{{ua.os}} </td>
+                    <td ng-class="{'success': supportedOs, 'danger' : !supportedOs}">
+                        <i class="glyphicon" ng-class="{'glyphicon-ok': supportedOs, 'glyphicon-remove' : !supportedOs}"></i>
+                    </td>
+                    <td>{{ua.browser}} </td>
+                    <td ng-class="{'success': supportedBrowser, 'danger' : !supportedBrowser}">
+                        <i class="glyphicon" ng-class="{'glyphicon-ok': supportedBrowser, 'glyphicon-remove' : !supportedBrowser}"></i>
+                    </td>
+                </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+        <div class="row-fluid">
+            <table class="table table-bordered">
+                <tbody>
+                <tr><td><b>Screen Resolution</b></td>
+                    <td><b>Supported</b></td></tr>
+                <tr>
+                    <td> {{width}} X {{height}}</td>
+                    <td ng-class="{'success': validResolution, 'danger' : !validResolution}">
+                        <i class="glyphicon" ng-class="{'glyphicon-ok': validResolution, 'glyphicon-remove' : !validResolution}"></i>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+
+
+    </div>
+</div>
+<script src="js/vendor/angular.min.js"></script>
+<script src="js/vendor/angular-route.min.js"></script>
+<script src="js/vendor/angular-filereader.min.js"></script>
+<script src="/js/vendor/detect.min.js"></script>
+
+<script src="js/app/app.js"></script>
+</body>
+</html>

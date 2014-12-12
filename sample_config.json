@@ -1,0 +1,24 @@
+{
+    "whitelist": [
+        "https://google.com",
+        "https://learning.amplify.com",
+        "https://cs.learning.amplify.com",
+        "https://drm.learning.amplify.com",
+        "https://dsfds.ewew"        
+    ],
+    "screenResolution": {
+        "height": 1024,
+        "width": 768
+    },
+    "browserMatrix": [
+        {
+            "os": {
+                "name": "MacOSX"
+            },
+            "browser": {
+                "name": "Chrome",
+                "version": 32
+            }
+        }
+    ]
+}
