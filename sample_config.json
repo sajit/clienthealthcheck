@@ -1,9 +1,9 @@
 {
     "whitelist": [
         "https://google.com",
-        "https://learning.amplify.com",
-        "https://cs.learning.amplify.com",
-        "https://drm.learning.amplify.com",
+        "https://google.com/sdss",
+        "https://twitter.com",
+        "https://xkcd.com",
         "https://dsfds.ewew"        
     ],
     "screenResolution": {
