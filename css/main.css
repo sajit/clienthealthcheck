@@ -2,5 +2,8 @@
     background-color: mediumspringgreen;
 }
 .danger {
-    background-color : orangered;
+    background-color : darkred;
+}
+.warning {
+    background-color: darkorange;
 }
