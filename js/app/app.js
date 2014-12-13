@@ -7,15 +7,10 @@ var app = angular.module('myApp', []);
 app.controller('MainCtrl', ['$scope','$q','$http','$window', function($scope,$q,$http,$window) {
     console.log('Init MainCtrl ::');
     $scope.fileReader = fileReader($q);
-    $scope.failedUrls = [];
-    $scope.totalUrlsCount = 0;
-
 
     $scope.getFile = function () {
-        console.log('In get file of MainCtrl');
         $scope.fileReader.readAsText($scope.file, $scope)
             .then(function(result) {
-                //console.log('Got File Content..');
                try{
                    $scope.data = JSON.parse(result);
                    $scope.fileLoadComplete = true;
@@ -37,14 +32,19 @@ app.controller('MainCtrl', ['$scope','$q','$http','$window', function($scope,$q,
     };
 
     $scope.handleWhitelist = function(whitelist){
-      $scope.totalUrlsCount = whitelist.length;
-      angular.forEach(whitelist,function(url){
-        $http.get(url).success(function(){
-
-        }).error(function(data,status,headers,config){
+      $scope.whitelist = whitelist.map(function(aUrl){
+         return {url : aUrl, status : 'success'};
+      });
+      angular.forEach($scope.whitelist,function(urlObj){
+        $http.get(urlObj.url).error(function(data,status,headers,config){
             //console.log(data,status,headers,config);
             if(status == 0){
-                $scope.failedUrls.push(url);
+                urlObj.status = 'danger';
+                urlObj.errorMessage = 'Network Error';
+            }
+            else{
+                urlObj.status = 'warning';
+                urlObj.errorMessage = status;
             }
 
         });
@@ -76,9 +76,6 @@ app.controller('MainCtrl', ['$scope','$q','$http','$window', function($scope,$q,
         $scope.width = $window.screen.width;
         $scope.validResolution = $scope.height >= screenResolution.height && $scope.width >= screenResolution.width;
     };
-
-
-
 
 }]);
 

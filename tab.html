@@ -2,7 +2,7 @@
 <html data-ng-app="myApp" data-ng-csp="">
 <head>
     <meta charset="UTF-8">
-    <title>Presently</title>
+    <title>Meme</title>
     <link rel="stylesheet" href="https://code.angularjs.org/snapshot/angular-csp.css">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
@@ -25,17 +25,19 @@
         <div  class="row-fluid">
             <table class="table table-bordered">
                 <thead>
-                <tr><td><h4>Total URLs</h4> <b>{{totalUrlsCount}}</b> </td></tr>
+
                 <tr>
 
-                    <td><h4>Failed URLs</h4></td>
+                    <td><h4>URL</h4></td><td>Info</td>
                 </tr>
                 </thead>
 
                 <tbody>
 
-                <tr ng-repeat="url in failedUrls" class="danger">
-                    <td><i class="glyphicon glyphicon-remove"></i> {{url}}</td>
+                <tr ng-repeat="urlObj in whitelist" ng-class="{'success' : urlObj.status=='success','warning':urlObj.status=='warning','danger':urlObj.status=='danger'}">
+                    <td> {{urlObj.url}}</td><td>{{urlObj.errorMessage}}
+                    <i class="glyphicon" ng-class="{'glyphicon-ok': urlObj.status=='success', 'glyphicon-remove' : urlObj.status=='danger', 'glyphicon-bell' : urlObj.status=='warning'}"></i>
+                      </td>
 
                 </tr>
 
