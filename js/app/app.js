@@ -7,6 +7,7 @@ var app = angular.module('myApp', []);
 app.controller('MainCtrl', ['$scope','$q','$http','$window', function($scope,$q,$http,$window) {
     console.log('Init MainCtrl ::');
     $scope.fileReader = fileReader($q);
+    $scope.fileLoadComplete = false;
 
     $scope.getFile = function () {
         $scope.fileReader.readAsText($scope.file, $scope)
